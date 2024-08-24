@@ -1,0 +1,53 @@
+.homepage {
+  position: relative;
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+
+.box a {
+  font-size: 50px;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  background-color: white;
+  text-decoration: none;
+  border-radius: 20px;
+  color: purple;
+  font-weight: 700;
+}
+
+.box a:nth-child(4) .content {
+  margin-left: 40px;
+}
+
+.menu {
+  color: white;
+}
+
+.content img {
+  width: 200px;
+}
+
+.cancelAndBack {
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.cancelAndBack button {
+  font-size: 50px;
+  padding: 50px;
+  background-color: cyan;
+  border: 5px solid white;
+  border-radius: 20px;
+}

@@ -1,8 +1,14 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import axios from "axios";
+import HomePage from "../components/HomePage/HomePage";
+import { Routes, Route } from "react-router-dom";
+import Menu from "../components/Menu/Menu";
+import Icecream from "../components/Icecream/Icecream";
+import Drinks from "../components/Drinks/Drinks";
+import Cake from "../components/Cake/Cake";
+import Coffe from "../components/Coffe/Coffe";
+import FreshDrinks from "../components/FreshDrinks/FreshDrinks";
 
 function App() {
   const [bundleSettings, setBundleSetting] = useState({});
@@ -20,23 +26,15 @@ function App() {
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/Menu" element={<Menu />} />
+        <Route path="/Icecream" element={<Icecream />} />
+        <Route path="/Drinks" element={<Drinks />} />
+        <Route path="/Cake" element={<Cake />} />
+        <Route path="/Coffe" element={<Coffe />} />
+        <Route path="/FreshDrinks" element={<FreshDrinks />} />
+      </Routes>
     </>
   );
 }
