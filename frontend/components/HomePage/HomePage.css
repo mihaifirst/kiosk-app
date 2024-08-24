@@ -1,0 +1,42 @@
+.homepage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+h1 {
+  font-size: 100px;
+}
+
+.homepage > span {
+  color: white;
+  font-size: 48px;
+}
+
+.language {
+  width: 400px;
+  height: 100px;
+  background-color: white;
+  margin-top: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.language span {
+  font-size: 30px;
+}
+
+.language .border {
+  width: 5px;
+  height: 75%;
+  background-color: violet;
+  border-radius: 5px;
+}
+
+.aqua-park {
+  margin-top: 50px;
+}
