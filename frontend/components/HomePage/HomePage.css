@@ -26,8 +26,16 @@ h1 {
   padding: 30px 50px;
 }
 
+.language a {
+  text-decoration: none;
+}
+
 .language span {
-  font-size: 30px;
+  font-size: 50px;
+}
+
+.text-red {
+  color: red;
 }
 
 .language .border {

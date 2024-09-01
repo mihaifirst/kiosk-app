@@ -10,8 +10,6 @@ mongoose.Promise = global.Promise;
 
 app.use(cors());
 
-const productRoutes = require("./products/products.routes");
-
 app.get("/api/products", (req, res) => {
   res.sendFile(path.join(__dirname, "./assets/products.json"));
 });

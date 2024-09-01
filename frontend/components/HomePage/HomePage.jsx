@@ -1,6 +1,6 @@
 import React from "react";
 import "./HomePage.css";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
@@ -8,12 +8,22 @@ import { Fragment } from "react";
 
 const HomePage = () => {
   const [bundleSettings, setBundleSetting] = useState([]);
+  const [defaultLanguage, setDefaultLanguage] = useState("");
 
   useEffect(() => {
     axios
       .get("http://localhost:3333/api/getBundleSettings")
       .then(({ data }) => {
         setBundleSetting(data.languages);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3333/api/getBundleSettings")
+      .then(({ data }) => {
+        setDefaultLanguage(data.defaultLanguage);
       })
       .catch((error) => console.log(error));
   }, []);
@@ -25,9 +35,16 @@ const HomePage = () => {
       <div className="language">
         {bundleSettings.map((event, index) => (
           <Fragment key={uuidv4()}>
-            <Link to="/Menu">
+            <NavLink
+              to="/Menu"
+              className={
+                defaultLanguage === "en" && event.label === "English"
+                  ? "text-red"
+                  : ""
+              } // cum sa fac sa setez si pentru engleza si pt Romana
+            >
               <span>{event.label}</span>
-            </Link>
+            </NavLink>
             {index < bundleSettings.length - 1 && (
               <div className="border"></div>
             )}
