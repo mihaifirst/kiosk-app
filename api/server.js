@@ -5,7 +5,12 @@ const cors = require("cors");
 const app = express();
 const port = 3333;
 
+const mongoose = require("mongoose");
+mongoose.Promise = global.Promise;
+
 app.use(cors());
+
+const productRoutes = require("./products/products.routes");
 
 app.get("/api/products", (req, res) => {
   res.sendFile(path.join(__dirname, "./assets/products.json"));

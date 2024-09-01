@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
 import HomePage from "../components/HomePage/HomePage";
@@ -11,18 +11,20 @@ import Coffe from "../components/Coffe/Coffe";
 import FreshDrinks from "../components/FreshDrinks/FreshDrinks";
 
 function App() {
-  const [bundleSettings, setBundleSetting] = useState({});
+  const [bundleSettings, setBundleSetting] = useState("");
+  const [products, setProducts] = useState([]);
 
-  function getBundleSettings() {
-    axios
-      .get("http://localhost:3333/api/getBundleSettings")
-      .then(({ data }) => {
-        console.log(data);
-        setBundleSetting(data);
-        console.log(bundleSettings);
-      })
-      .catch((error) => console.log(error));
-  }
+  // window.setTimeout(() => {
+  //   (function getProducts() {
+  //     axios
+  //       .get("http://localhost:3333/api/products")
+  //       .then((response) => {
+  //         console.log(response.data.products);
+  //         setProducts(response.data.products);
+  //       })
+  //       .catch((error) => console.log(error));
+  //   })();
+  // }, 5000);
 
   return (
     <>
