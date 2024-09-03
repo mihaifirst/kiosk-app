@@ -1,17 +1,44 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import "./Coffe.css";
 
 const Coffe = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3333/api/products")
+      .then(({ data }) => {
+        setProducts(data.products[1].buttons);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
   return (
     <>
-      <h1> Coffe</h1>
-      <div className="cancelAndBack">
-        <Link to="/Menu">
-          <button>Cancel Order</button>
-        </Link>
-        <Link to="/Menu">
-          <button>Back</button>
-        </Link>
+      <div className="homepage">
+        <h1> Coffe</h1>
+        <div className="box">
+          {products.map((event, index) => {
+            return (
+              <NavLink to="/" key={index}>
+                <img src={event.img} className="menu-image coffe" />
+                <span>{event.title}</span>
+                <span>{event.weight}</span>
+              </NavLink>
+            );
+          })}
+        </div>
+        <div className="cancelAndBack">
+          <Link to="/Menu">
+            <button>Cancel Order</button>
+          </Link>
+          <Link to="/Menu">
+            <button>Back</button>
+          </Link>
+        </div>
       </div>
     </>
   );
