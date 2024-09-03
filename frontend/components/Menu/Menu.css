@@ -2,6 +2,12 @@
   position: relative;
 }
 
+.homepage h1 {
+  position: absolute;
+  top: 0;
+  left: 50;
+}
+
 .box {
   display: flex;
   flex-direction: row;
@@ -12,27 +18,27 @@
 }
 
 .box a {
-  font-size: 50px;
+  width: 250px;
+  height: 200px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   padding: 40px;
-  background-color: white;
   text-decoration: none;
   border-radius: 20px;
+  background-color: white;
   color: purple;
+  font-size: 30px;
   font-weight: 700;
-}
-
-.box a:nth-child(4) .content {
-  margin-left: 40px;
 }
 
 .menu {
   color: white;
 }
 
-.content img {
-  width: 200px;
+.menu-image {
+  width: 100px;
 }
 
 .cancelAndBack {
