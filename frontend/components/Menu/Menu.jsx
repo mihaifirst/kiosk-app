@@ -1,6 +1,8 @@
 import React from "react";
 import "./Menu.css";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Link, NavLink } from "react-router-dom";
 import icecream from "../../assets/images/ice-cream.jpg";
 import drinks from "../../assets/images/drinks.png";
 import cake from "../../assets/images/cake.png";
@@ -8,41 +10,54 @@ import freshdrinks from "../../assets/images/fresh-drinks.png";
 import coffe from "../../assets/images/coffe.png";
 
 const Menu = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3333/api/products")
+      .then(({ data }) => {
+        setProducts(data.products);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  const getRoute = (productTitle) => {
+    switch (productTitle) {
+      case "Cafea, Ceai, Ciocolata":
+        return "/Coffe";
+      case "Bauturi":
+        return "/Drinks";
+      case "Prajituri":
+        return "/Cake";
+      case "Inghetata":
+        return "/Icecream";
+      case "Sucuri Proaspete":
+        return "/FreshDrinks";
+    }
+  };
+
+  const productsImg = {
+    "Cafea, Ceai, Ciocolata": coffe,
+    Bauturi: drinks,
+    Prajituri: cake,
+    Inghetata: icecream,
+    "Sucuri Proaspete": freshdrinks,
+  };
+
   return (
     <>
       <div className="homepage">
         <h1>Menu</h1>
         <div className="box">
-          <Link to="/Icecream">
-            <div className="content">
-              <img src={icecream} />
-            </div>
-            Ice cream
-          </Link>
-          <Link to="/Drinks">
-            <div className="content">
-              <img src={drinks} />
-            </div>
-            Drinks
-          </Link>
-          <Link to="/Cake">
-            <div className="content">
-              <img src={cake} />
-            </div>
-            Cake
-          </Link>
-          <Link to="/FreshDrinks">
-            <div className="content">
-              <img src={freshdrinks} />
-            </div>
-            Fresh Drinks
-          </Link>
-          <Link to="/Coffe">
-            <div className="content">
-              <img src={coffe} />
-            </div>
-            Coffe
-          </Link>
+          {products.map((event, index) => {
+            const image = productsImg[event.title] || "";
+            return (
+              <NavLink to={getRoute(event.title)} key={index}>
+                <img src={image} className="menu-image" />
+                <span>{event.title}</span>
+              </NavLink>
+            );
+          })}
         </div>
         <div className="cancelAndBack">
           <Link to="/">
