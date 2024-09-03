@@ -14,12 +14,11 @@
   gap: 50px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 50px;
 }
 
 .box a {
   width: 250px;
-  height: 200px;
+  min-height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
