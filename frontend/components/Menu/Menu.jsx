@@ -2,15 +2,17 @@ import React from "react";
 import "./Menu.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import icecream from "../../assets/images/ice-cream.jpg";
 import drinks from "../../assets/images/drinks.png";
 import cake from "../../assets/images/cake.png";
 import freshdrinks from "../../assets/images/fresh-drinks.png";
 import coffe from "../../assets/images/coffe.png";
+import CancelOrderModal from "../CancelOrderModal/CancelOrderModal";
 
 const Menu = () => {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -35,6 +37,7 @@ const Menu = () => {
         return "/FreshDrinks";
     }
   };
+  // TODO de modificat, event.path
 
   const productsImg = {
     "Cafea, Ceai, Ciocolata": coffe,
@@ -42,6 +45,10 @@ const Menu = () => {
     Prajituri: cake,
     Inghetata: icecream,
     "Sucuri Proaspete": freshdrinks,
+  };
+
+  const handleCancelConfirm = () => {
+    navigate("/");
   };
 
   return (
@@ -60,9 +67,7 @@ const Menu = () => {
           })}
         </div>
         <div className="cancelAndBack">
-          <Link to="/">
-            <button>Cancel Order</button>
-          </Link>
+          <CancelOrderModal onConfirm={handleCancelConfirm} />
           <Link to="/">
             <button>Back</button>
           </Link>
