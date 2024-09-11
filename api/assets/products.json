@@ -3,6 +3,7 @@
     {
       "id": 1,
       "title": "Bauturi",
+      "path": "drinks",
       "buttons": [
         {
           "id": 6,

@@ -37,11 +37,7 @@ const HomePage = () => {
           <Fragment key={uuidv4()}>
             <NavLink
               to="/Menu"
-              className={
-                defaultLanguage === "en" && event.label === "English"
-                  ? "text-red"
-                  : ""
-              } // cum sa fac sa setez si pentru engleza si pt Romana
+              className={defaultLanguage === event.key ? "text-red" : ""} // cum sa fac sa setez si pentru engleza si pt Romana
             >
               <span>{event.label}</span>
             </NavLink>
