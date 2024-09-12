@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./Drinks.css";
 import CancelOrderModal from "../CancelOrderModal/CancelOrderModal";
+import ProductModal from "../ProductModal/ProductModal";
 
 const Drinks = () => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
-
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     axios
@@ -23,29 +25,42 @@ const Drinks = () => {
     navigate("/");
   };
 
+  const handleProductClick = (product) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedProduct(null);
+  };
 
   return (
     <>
       <div className="homepage">
         <h1> Drinks</h1>
         <div className="box">
-          {products.map((event, index) => {
-            return (
-              <NavLink to="/" key={index}>
+          {products.map((event, index) => (
+            <div key={index} className="drinks-item">
+              <NavLink onClick={() => handleProductClick(event)}>
                 <img src={event.img} className="menu-image drinks" />
                 <span>{event.title}</span>
                 <span>{event.weight}</span>
               </NavLink>
-            );
-          })}
+            </div>
+          ))}
         </div>
         <div className="cancelAndBack">
-        <CancelOrderModal onConfirm={handleCancelConfirm} />
+          <CancelOrderModal onConfirm={handleCancelConfirm} />
           <Link to="/Menu">
             <button>Back</button>
           </Link>
         </div>
       </div>
+      <ProductModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        product={selectedProduct}
+      />
     </>
   );
 };

@@ -47,5 +47,5 @@ const Icecream = () => {
     </>
   );
 };
-2;
+
 export default Icecream;
