@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./CancelOrderModal.css";
+import Modal from "./CancelOrderModal.module.css";
 
 const CancelOrderModal = ({ onConfirm }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,17 +19,17 @@ const CancelOrderModal = ({ onConfirm }) => {
 
   return (
     <>
-      <button onClick={openModal} className="openModal">
+      <button onClick={openModal} className={Modal.openModal}>
         Cancel Order
       </button>
       {isOpen && (
-        <div className="modal-background">
-          <div className="modal">
+        <div className={Modal.modalBackground}>
+          <div className={Modal.modal}>
             <p>Are you sure you want to cancel your order?</p>
-            <button onClick={handleConfirm} className="cancel">
+            <button onClick={handleConfirm} className={Modal.cancel}>
               Yes, Cancel
             </button>
-            <button onClick={closeModal} className="back">
+            <button onClick={closeModal} className={Modal.back}>
               No, Go Back
             </button>
           </div>
