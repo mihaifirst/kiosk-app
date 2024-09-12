@@ -1,11 +1,14 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./FreshDrinks.css";
+import CancelOrderModal from "../CancelOrderModal/CancelOrderModal";
 
 const FreshDrinks = () => {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     axios
@@ -15,6 +18,11 @@ const FreshDrinks = () => {
       })
       .catch((error) => console.log(error));
   }, []);
+
+  const handleCancelConfirm = () => {
+    navigate("/");
+  };
+
 
   return (
     <>
@@ -32,9 +40,7 @@ const FreshDrinks = () => {
           })}
         </div>
         <div className="cancelAndBack">
-          <Link to="/Menu">
-            <button>Cancel Order</button>
-          </Link>
+        <CancelOrderModal onConfirm={handleCancelConfirm} />
           <Link to="/Menu">
             <button>Back</button>
           </Link>
